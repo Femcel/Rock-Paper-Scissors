@@ -3,15 +3,11 @@ let RPS = ["rock", "paper", "scissors"];
 function ComputerChoice(){
   let computer = Math.floor(Math.random() * 3);
   return computer;
-
 }
 
 function PlayerChoice(){
   let player = window.prompt("Choose between rock, paper, or scissors (write your choice on the box below)", "");
   player = player.toLowerCase();
-
-  
-
   return player;
 }
 
@@ -29,21 +25,25 @@ function checkPlayerChoice(pChoice){
     default:
       console.log("You typed an invalid value, please restart the page!")
   }
-
   return pChoice;
 }
 
 function Win() {
-  console.log("You win!");
+  console.log("You get a point!");
+  pCounter++;
+
 }
 
 function Loss() {
-  console.log("You lose!");
+  console.log("Your opponent gets a point!");
+  cCounter++;
+
 }
 
-function CheckResult (pChoice, cCHoice) {
+function CheckResult (pChoice, cCHoice, iterator) {
   if(pChoice == cChoice){
-    console.log("Tie")
+    console.log("Tie, invalid round")
+    iterator -= 1;
   } else if(pChoice == 0 && cChoice == 2){
     Win();
   } else if(pChoice == 0 && cChoice == 1){
@@ -58,15 +58,31 @@ function CheckResult (pChoice, cCHoice) {
     Loss();
   }
 }
-let pChoice = PlayerChoice();
-pChoice = checkPlayerChoice(pChoice);
-let cChoice = ComputerChoice();
 
-console.log("You picked: "+ pChoice);
-console.log("Your oponent picked: " + cChoice);
+let pChoice = 0;
+let cChoice = 0;
 
-CheckResult(pChoice, cChoice);
+let pCounter = 0;
+let cCounter = 0;
 
+for (i = 0; i < 5;){
+  pChoice = PlayerChoice();
+  pChoice = checkPlayerChoice(pChoice);
+  cChoice = ComputerChoice();
 
+  console.log("You picked: "+ RPS[pChoice]);
+  console.log("Your oponent picked: " + RPS[cChoice]);
 
+  CheckResult(pChoice, cChoice, i);
 
+  console.log(pCounter + " " + cCounter)
+  if(pCounter == 3){
+    console.log("You Won");
+    break;
+  } else if(cCounter == 3){
+    console.log("You Lost");
+    break;
+  } else {
+    continue;
+  }
+}
