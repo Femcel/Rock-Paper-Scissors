@@ -34,36 +34,39 @@ function checkPlayerChoice(pChoice){
 }
 
 function Win() {
-  console.log("win");
+  console.log("You win!");
 }
 
 function Loss() {
-  console.log("loss");
+  console.log("You lose!");
 }
 
+function CheckResult (pChoice, cCHoice) {
+  if(pChoice == cChoice){
+    console.log("Tie")
+  } else if(pChoice == 0 && cChoice == 2){
+    Win();
+  } else if(pChoice == 0 && cChoice == 1){
+    Loss();
+  } else if(pChoice == 1 && cChoice == 0){
+    Win();
+  } else if(pChoice == 1 && cCHoice == 2){
+    Loss();
+  } else if(pChoice == 2 && cChoice == 1){
+    Win();
+  } else if(pChoice == 2 && cCHoice == 0){
+    Loss();
+  }
+}
 let pChoice = PlayerChoice();
 pChoice = checkPlayerChoice(pChoice);
 let cChoice = ComputerChoice();
 
-console.log("Player: " + pChoice);
-console.log("Computer: " + cChoice);
+console.log("You picked: "+ pChoice);
+console.log("Your oponent picked: " + cChoice);
 
+CheckResult(pChoice, cChoice);
 
-if(pChoice == cChoice){
-  console.log("Tie")
-} else if(pChoice == 0 && cChoice == 2){
-  Win();
-} else if(pChoice == 0 && cChoice == 1){
-  Loss();
-} else if(pChoice == 1 && cChoice == 0){
-  Win();
-} else if(pChoice == 1 && cCHoice == 2){
-  Loss();
-} else if(pChoice == 2 && cChoice == 1){
-  Win();
-} else if(pChoice == 2 && cCHoice == 0){
-  Loss();
-}
 
 
 
