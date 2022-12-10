@@ -1,17 +1,17 @@
 let RPS = ["rock", "paper", "scissors"];
 
-function ComputerChoice(){
+function ComputerChoice(){ //Gets random number that'll be used as an index to RPS array
   let computer = Math.floor(Math.random() * 3);
   return computer;
 }
 
-function PlayerChoice(){
+function PlayerChoice(){  //Prompts choice (wirtten) and returns it lower-cased
   let player = window.prompt("Choose between rock, paper, or scissors (write your choice on the box below)", "");
   player = player.toLowerCase();
   return player;
 }
 
-function checkPlayerChoice(pChoice){
+function checkPlayerChoice(pChoice){ //Checks if choice is valid and turns it into a number to be used as an index in RPS array
   switch(pChoice){
     case "rock":
       pChoice = 0;
@@ -28,19 +28,19 @@ function checkPlayerChoice(pChoice){
   return pChoice;
 }
 
-function Win() {
+function Win() { // Prints winning message and adds to player's counter
   console.log("You get a point!");
   pCounter++;
 
 }
 
-function Loss() {
+function Loss() { // Prints losing message and adds to enemy's counter
   console.log("Your opponent gets a point!");
   cCounter++;
 
 }
 
-function CheckResult (pChoice, cCHoice, iterator) {
+function CheckResult (pChoice, cCHoice, iterator) { // Checks winner | if tie: nullifies game
   if(pChoice == cChoice){
     console.log("Tie, invalid round")
     iterator -= 1;
@@ -59,13 +59,13 @@ function CheckResult (pChoice, cCHoice, iterator) {
   }
 }
 
-let pChoice = 0;
-let cChoice = 0;
+let pChoice;
+let cChoice;
 
 let pCounter = 0;
 let cCounter = 0;
 
-for (i = 0; i < 5;){
+for (i = 0; i < 5;){ // sets best out-of-5
   pChoice = PlayerChoice();
   pChoice = checkPlayerChoice(pChoice);
   cChoice = ComputerChoice();
