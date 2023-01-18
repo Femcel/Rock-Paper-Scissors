@@ -69,9 +69,19 @@ function Loss() {
 function ChangeScore () {
   scoreText.textContent = `Score: ${pPoints} X ${cPoints}`;
   if(pPoints == 5) {
+    let para = document.createTextNode("You win!!!   :)");
+    msgDiv.appendChild(para);
     scoreText.style.color = "green";
   } else if(cPoints == 5){
+    let para = document.createTextNode("You lost!!!  :(");
+    msgDiv.appendChild(para);
     scoreText.style.color = "red";
+  }
+  if(pPoints == 5 || cPoints == 5) {
+    let buttons = document.getElementsByClassName("button");
+    for (i = 0; i < buttons.length; i++) {
+      buttons[i].disabled = true; 
+    }
   }
 
 }
