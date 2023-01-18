@@ -1,3 +1,4 @@
+const RPS = ["rock", "paper", "scissors"];
 const rockBtn = document.getElementById("rock");
 rockBtn.addEventListener('click', () => {Play(0)});
 const paperBtn = document.getElementById("paper");
@@ -6,7 +7,7 @@ const scissorsBtn = document.getElementById("scissors");
 scissorsBtn.addEventListener('click', () => {Play(2)});
 
 const scoreText = document.getElementById("Score");
-
+const msgDiv = document.getElementById("MessageBoard");
 
 
 let pPoints = 0;
@@ -15,8 +16,11 @@ let cPoints = 0;
 let pChoice = -1;
 let cChoice = -1;
 
+let para;
 function Play(index){
   pChoice = index;
+  let p = document.createElement('p');
+  msgDiv.appendChild(p);
   CheckResult(pChoice, ComputerChoice())
 }
 
@@ -25,10 +29,15 @@ function ComputerChoice(){
   return cChoice;
 }
 
+
 function CheckResult (pChoice, cCHoice) {
+  let para = document.createTextNode(`You picked ${RPS[pChoice]} and your opponent picked ${RPS[cChoice]}`);
+  
+  msgDiv.appendChild(para);
+
   if(pChoice == cChoice){
-    console.log("Tie, invalid round");
-    //iterator -= 1;
+    let para = document.createTextNode(", nobody gets points!");
+    msgDiv.appendChild(para);
   } else if(pChoice == 0 && cChoice == 2){
     Win();
   } else if(pChoice == 0 && cChoice == 1){
@@ -45,10 +54,14 @@ function CheckResult (pChoice, cCHoice) {
 }
 function Win() {
   pPoints++;
+  let para = document.createTextNode(", you get a point!")
+  msgDiv.appendChild(para);
   ChangeScore();
 }
 function Loss() {
   cPoints++;
+  let para = document.createTextNode(", your opponent gets a point!");
+  msgDiv.appendChild(para);
   ChangeScore();
   
 }
